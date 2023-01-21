@@ -1,0 +1,24 @@
+{
+    "name": "alokka/shopfinder",
+    "description": "Alokka Shopfinder",
+    "require": {
+        "magento/project-community-edition": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Alokka/Shopfinder/"
+            ]
+        ]
+    },
+    "authors": [
+        {
+            "name": "Alokka",
+            "homepage": "https://www.alokka.com/",
+            "role": "Developer"
+        }
+    ]
+}

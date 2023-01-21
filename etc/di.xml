@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Alokka\Shopfinder\Api\Data\ShopInterface" type="Alokka\Shopfinder\Model\Shop" />
+
+    <virtualType name="Alokka\Shopfinder\Model\ResourceModel\Shop\Shop\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">shopfinder</argument>
+            <argument name="resourceModel" xsi:type="string">Alokka\Shopfinder\Model\ResourceModel\Shop</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="shop_record_shop_list_data_source" xsi:type="string">Alokka\Shopfinder\Model\ResourceModel\Shop\Shop\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Alokka\Shopfinder\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Alokka\Shopfinder\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">customLogHandler</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Alokka\Shopfinder\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

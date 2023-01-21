@@ -1,0 +1,44 @@
+type Query {
+    shops: [Shops] @resolver(class: "Alokka\\Shopfinder\\Model\\Resolver\\Shops") @doc(description: "Get list of All Shops")
+    shop( identifier: String @doc(description: "identifier of the shop")): [Shop] @resolver(class: "Alokka\\Shopfinder\\Model\\Resolver\\Shop") @doc(description: "Get Specific Shop") @cache(cacheable: false)
+}
+
+type Shops @doc(description: "All Shops") {
+    entity_id: Int @doc(description: "EntityId")
+    shop_name: String @doc(description: "Shop Name")
+    identifier: String @doc(description: "Identifier")
+    country: String @doc(description: "Country")
+    image: String @doc(description: "Image")
+}
+
+type Shop @doc(description: "Get Specific Shop") {
+    entity_id: Int @doc(description: "EntityId")
+    shop_name: String @doc(description: "Shop Name")
+    identifier: String @doc(description: "Identifier")
+    country: String @doc(description: "Country")
+    image: String @doc(description: "Image")
+}
+
+
+type Mutation {
+    updateShops(
+        input: updateShopInput!
+        @doc(description: "An input object that contains changes related to a shop by identifier.")
+    ): updateShopOutput
+        @resolver(class: "Alokka\\Shopfinder\\Model\\Resolver\\UpdateShop")
+        @doc(description: "Update a shop.")
+}
+
+input updateShopInput @doc(description: "Contains details about a shop by identifier.") {
+    identifier: String! @doc(description: "Identifier")
+    shop_name: String @doc(description: "Shop Name")
+    country: String @doc(description: "Country")
+    image: String @doc(description: "Image")
+}
+ 
+type updateShopOutput {
+    shop_name: String @doc(description: "Shop Name")
+    identifier: String @doc(description: "Identifier")
+    country: String @doc(description: "Country")
+    image: String @doc(description: "Image")
+}
